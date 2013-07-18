@@ -2,16 +2,10 @@
 # Ari Cohen
 
 from picks_interface import *
+from picks_computation import *
 import os
 
-class PFunctions():
-    QUIT = -1
-    POPULATE = 1
-    CHECK_WINNERS = 2
-    CLEAR_DATA = 3
 
-    FROM_MAIL = 4
-    FROM_FOLDER = 5
 
 
 def main():
@@ -21,7 +15,7 @@ def main():
         method = populate_type()
         forms_folder = get_forms_folder()
         if (method == PFunctions.FROM_FOLDER):
-            all_forms = extract_and_check_forms(forms_folder)
+            all_forms = extract_and_check_forms(forms_folder)                   
         elif (method == PFunctions.FROM_MAIL):
             export_from_mail(forms_folder, week_num)
         else:
@@ -32,7 +26,8 @@ def main():
         #Populate Cells Code
     elif (chosen_funct == PFunctions.CHECK_WINNERS):
         matchups = get_matchups(week_num)
-        
+        winners = get_winners(matchups)
+        check_picks(week_num, winners)
     elif (chosen_funct == PFunctions.CLEAR_DATA):
         #Clear Data Code
         if (are_you_sure()):
@@ -42,3 +37,5 @@ def main():
         print "quitting"
         return
         #Quit Code Here
+
+main()

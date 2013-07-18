@@ -1,8 +1,7 @@
 # picks_interface.py
 # Ari Cohen
 
-from picks import *
-from picks_computation import *
+
 
 def what_doing():
     while (True):
@@ -63,5 +62,29 @@ def check_week():
             invalid_input()
             continue
 
+def get_winners(matchups):
+    entering = True
+    while (entering):
+        winners = []
+        entering = False
+        print "Enter 1 or 2 for the winner"
+        print "To restart, enter 'r'"
+        for matchup in matchups:
+            spacer = [" ", " "]
+            for m in range(2):
+                if (len(matchup[m]) < 3): spacer[m] = "  "
+            winner = raw_input(str(matchup[0])+spacer[0]+"vs."+spacer[1]+str(matchup[1])+": ")
+            if (winner in "rR"):
+                entering = True
+                break
+            else:
+                winners.append(matchup[int(winner) - 1])
+        
+    return winners
+        
+        
+
 def get_dir():
     return os.path.dirname(os.path.abspath(__file__))
+
+from picks_computation import *
