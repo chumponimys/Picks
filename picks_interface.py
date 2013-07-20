@@ -78,13 +78,24 @@ def get_winners(matchups):
                 entering = True
                 break
             else:
-                winners.append(matchup[int(winner) - 1])
-        
+                winners.append(matchup[int(winner) - 1])              
+    #winners = ['CAR', 'TEN', 'NOS', 'MIN', 'PHI', 'NEP', 'MIA', 'SFF', 'NYJ',
+               #'BAL', 'SDC', 'ATL', 'GBP', 'ARZ', 'PIT', 'WAS']    
     return winners
         
         
 
 def get_dir():
     return os.path.dirname(os.path.abspath(__file__))
+
+def get_excel_file():
+    #return raw_input("Drag Excel File Here: ")
+    return '/Users/aricohen/Desktop/Picks/FP14_MASTER.xls'
+
+def get_save_loc(current_path):
+    path = raw_input("Path to save new version to (blank to writeover curent): ")
+    if (path == ""):
+        return current_path
+    return path
 
 from picks_computation import *
